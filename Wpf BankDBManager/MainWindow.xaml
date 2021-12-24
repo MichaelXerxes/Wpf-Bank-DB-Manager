@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="800">
     <Grid>
-        <Label Content="Branches List" Margin="38,19,655.6,422.4" FontSize="14" RenderTransformOrigin="0.435,-0.877"/>
+        <Label Content="Branches List" Margin="38,19,655.6,410.4" FontSize="14" RenderTransformOrigin="0.435,-0.877"/>
         <ListBox Name="BranchesList" HorizontalAlignment="Left" Height="171" Margin="38,65,0,0" VerticalAlignment="Top" Width="100"/>
 
     </Grid>
