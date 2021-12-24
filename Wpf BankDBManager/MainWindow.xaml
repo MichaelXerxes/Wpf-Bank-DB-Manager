@@ -5,10 +5,48 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Wpf_BankDBManager"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="800">
+        Title="DataBase Manager" Height="500" Width="720" Background="MediumSlateBlue">
     <Grid>
-        <Label Content="Branches List" Margin="38,19,655.6,410.4" FontSize="14" RenderTransformOrigin="0.435,-0.877"/>
-        <ListBox Name="BranchesList" HorizontalAlignment="Left" Height="171" Margin="38,65,0,0" VerticalAlignment="Top" Width="100"/>
+        <ListBox Name="BranchesList" HorizontalAlignment="Left" Height="171" Margin="38,65,0,0" VerticalAlignment="Top" Width="100" SelectionChanged="BranchesList_SelectionChanged"
+                 Background="Azure" FontStyle="Italic" FontWeight="Bold" BorderThickness="2px"/>
+        <Label Background="IndianRed" Content="Associated Cashier List" HorizontalAlignment="Left" Margin="174,21,0,0" VerticalAlignment="Top" Width="136"/>
+        <ListBox Name="ListAssociatedCashiers" HorizontalAlignment="Left" Height="171" Margin="192,65,0,0" VerticalAlignment="Top" Width="100" SelectionChanged="ListAssociatedCashiers_SelectionChanged"/>
+        <Label Background="IndianRed" Content="Cahsier Details" HorizontalAlignment="Left" Margin="340,21,0,0" VerticalAlignment="Top" Width="100"/>
+        <ListBox Name="ListCahsierDetails" HorizontalAlignment="Left" Height="171" Margin="340,65,0,0" VerticalAlignment="Top" Width="100" ItemsSource="{Binding}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Name}" />
+                        <TextBlock Text="{Binding Contact_Number}" />
+                        <TextBlock Text="{Binding Earnings}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ListBox Name="ListAllCashiers" Background="Teal" FontWeight="Black"   HorizontalAlignment="Left" Height="176" Margin="499,84,0,0" VerticalAlignment="Top" Width="118"/>
+        <Label Background="IndianRed" Content="All Cashiers" HorizontalAlignment="Left" Margin="517,21,0,0" VerticalAlignment="Top" Width="82"/>
+        <Button Content="Delete Branch" HorizontalAlignment="Left" Margin="38,241,0,0" VerticalAlignment="Top" Width="100" Click="DeleteBranch_Click"/>
+        <Button Content="Remove Cashier" HorizontalAlignment="Left" Margin="192,241,0,0" VerticalAlignment="Top" Width="100"/>
+        <Button Content="Update Details" HorizontalAlignment="Left" Margin="340,241,0,0" VerticalAlignment="Top" Width="100"/>
+        <Button Content="Add Branch" HorizontalAlignment="Left" Margin="38,342,0,0" VerticalAlignment="Top" Width="100" Click="AddBranch_Click"/>
+        <Button Content="Upadte Branch" HorizontalAlignment="Left" Margin="38,375,0,0" VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.484,2.885"/>
+        <Button Content="Add Cashier in Associated-List" HorizontalAlignment="Left" Margin="164,342,0,0" VerticalAlignment="Top" Width="168" RenderTransformOrigin="0.498,3.885" />
+        <Button Content="Update Cashier in Branch" HorizontalAlignment="Left" Margin="164,375,0,0" VerticalAlignment="Top" Width="168"/>
+        <Button Content="Delete Cashier" HorizontalAlignment="Left" Margin="499,411,0,0" VerticalAlignment="Top" Width="118" Click="DeleteCashier_Click"/>
+        <Button  Background="DarkSalmon" FontWeight="ExtraBold" Click="AddCashierToBranch_Click" Content="Add Cashier to BankBranch" HorizontalAlignment="Left" Margin="475,52,0,0" VerticalAlignment="Top" Width="167"/>
+        <TextBox Name="textBox" HorizontalAlignment="Left" Height="23" Margin="38,299,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="254"/>
+        <Label  Background="IndianRed" Content=" All Branches" HorizontalAlignment="Left" Margin="38,21,0,0" VerticalAlignment="Top" Width="94"/>
+        <Button   Content="Add Cashier" HorizontalAlignment="Left" Margin="499,379,0,0" VerticalAlignment="Top" Width="118" Height="19" Click="AddCashier_Click"/>
+        <Grid Background="LightSteelBlue" HorizontalAlignment="Left" Height="105" Margin="395,269,0,0" VerticalAlignment="Top" Width="289">
+            <Label Content="Cashier Name" HorizontalAlignment="Left" VerticalAlignment="Top" Width="88"/>
+            <TextBox  x:Name="textCashierName" HorizontalAlignment="Left" Height="23" Margin="117,3,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+            <Label Content="Contact Number" HorizontalAlignment="Left" Margin="0,35,0,0" VerticalAlignment="Top"/>
+            <Label Content="Cashier Earnings" HorizontalAlignment="Left" Margin="0,68,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.507,0.922"/>
+            <TextBox x:Name="textContactNumber" HorizontalAlignment="Left" Height="23" Margin="117,35,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.217,0.33"/>
+            <TextBox x:Name="textEarnings" HorizontalAlignment="Left" Height="23" Margin="117,71,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+
+        </Grid>
+        <Label Background="IndianRed" Content="Branch Location" HorizontalAlignment="Left" Margin="38,268,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
