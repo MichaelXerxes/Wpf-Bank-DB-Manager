@@ -18,9 +18,7 @@ using System.Data;
 
 namespace Wpf_BankDBManager
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+    
     public partial class MainWindow : Window
         
     {
