@@ -63,13 +63,14 @@ namespace Wpf_BankDBManager
             try
             {
                 string query = "select * from Cashier c inner join WorkPlaceCashierBankBranch wpbb" +
-                    " on c.Id = wpbb.CashierId where wpbb.BankBranchId= @BankBranchId";
+                    " on c.Id = wpbb.CashierId @CashierID where wpbb.BankBranchId= @BankBranchId";
                 SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
 
                 SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
 
                 using (sqlDataAdapter)
                 {
+                    sqlCommand.Parameters.AddWithValue("@CashierID", ListAllCashiers.SelectedValue);
                     sqlCommand.Parameters.AddWithValue("@BankBranchId", BranchesList.SelectedValue);
 
                     DataTable cashierTable = new DataTable();
@@ -90,7 +91,7 @@ namespace Wpf_BankDBManager
         {
             try
             {
-                string query = "select Cashier.* from Cashier where Id= @CashierId";
+                string query = "select * from Cashier where Id= @CashierId";
                 SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
 
                 SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
@@ -151,6 +152,7 @@ namespace Wpf_BankDBManager
         }
         private void ListAllCashiers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            ShowAllCashiers();
             ShowSelectedCashierInTextBox();
         }
 
@@ -212,9 +214,9 @@ namespace Wpf_BankDBManager
 
 
             }
-            catch (Exception ed)
+            catch (Exception)
             {
-                MessageBox.Show(ed.ToString());
+                //MessageBox.Show(ed.ToString());
             }
             finally
             {
@@ -346,6 +348,52 @@ namespace Wpf_BankDBManager
             }
         }
 
-        
+        private void UpdateBranch_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string query = "update BankBranch Set Location = @Location where Id = @BranchId";
+                SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+                sqlConnection.Open();
+                sqlCommand.Parameters.AddWithValue("@BranchId", BranchesList.SelectedValue);
+                sqlCommand.Parameters.AddWithValue("@Location", textBox.Text);
+                sqlCommand.ExecuteScalar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+
+            }
+            finally
+            {
+                sqlConnection.Close();
+                ShowBranches();
+            }
+
+        }
+        private void UpdateCashier_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string query = "update Cashier Set Name = @Name where Id = @CashierId";
+                SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+                sqlConnection.Open();
+                sqlCommand.Parameters.AddWithValue("@CashierId", ListAllCashiers.SelectedValue);
+                sqlCommand.Parameters.AddWithValue("@Name", textBox.Text);
+                sqlCommand.ExecuteScalar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+
+            }
+            finally
+            {
+                sqlConnection.Close();
+                ShowAllCashiers();
+            }
+
+        }
+
     }
-}
+    }

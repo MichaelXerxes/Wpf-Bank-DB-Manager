@@ -29,9 +29,9 @@
         <Button Content="Remove Cashier" HorizontalAlignment="Left" Margin="192,241,0,0" VerticalAlignment="Top" Width="100" Click="RemoveCashierfromBranchList_Click"/>
         <Button Content="Update Details" HorizontalAlignment="Left" Margin="340,241,0,0" VerticalAlignment="Top" Width="100"/>
         <Button Content="Add Branch" HorizontalAlignment="Left" Margin="38,342,0,0" VerticalAlignment="Top" Width="100" Click="AddBranch_Click"/>
-        <Button Content="Upadte Branch" HorizontalAlignment="Left" Margin="38,375,0,0" VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.484,2.885"/>
+        <Button Click="UpdateBranch_Click" Content="Upadte Branch" HorizontalAlignment="Left" Margin="38,375,0,0" VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.484,2.885"/>
         <Button Content="Add Cashier in Associated-List" HorizontalAlignment="Left" Margin="164,342,0,0" VerticalAlignment="Top" Width="168" RenderTransformOrigin="0.498,3.885" />
-        <Button Content="Update Cashier in Branch" HorizontalAlignment="Left" Margin="164,375,0,0" VerticalAlignment="Top" Width="168"/>
+        <Button Click="UpdateCashier_Click" Content="Update Cashier in Branch" HorizontalAlignment="Left" Margin="164,375,0,0" VerticalAlignment="Top" Width="168"/>
         <Button Content="Delete Cashier" HorizontalAlignment="Left" Margin="499,411,0,0" VerticalAlignment="Top" Width="118" Click="DeleteCashier_Click"/>
         <Button  Background="DarkSalmon" FontWeight="ExtraBold" Click="AddCashierToBranch_Click" Content="Add Cashier to BankBranch" HorizontalAlignment="Left" Margin="475,52,0,0" VerticalAlignment="Top" Width="167"/>
         <TextBox Name="textBox" HorizontalAlignment="Left" Height="23" Margin="38,299,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="254"/>
