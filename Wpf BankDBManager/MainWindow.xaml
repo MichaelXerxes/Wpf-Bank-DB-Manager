@@ -23,10 +23,10 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <ListBox Name="ListAllCashiers" Background="Teal" FontWeight="Black"   HorizontalAlignment="Left" Height="176" Margin="499,84,0,0" VerticalAlignment="Top" Width="118"/>
+        <ListBox Name="ListAllCashiers" Background="Teal" FontWeight="Black"   HorizontalAlignment="Left" Height="176" Margin="499,84,0,0" VerticalAlignment="Top" Width="118" SelectionChanged="ListAllCashiers_SelectionChanged"/>
         <Label Background="IndianRed" Content="All Cashiers" HorizontalAlignment="Left" Margin="517,21,0,0" VerticalAlignment="Top" Width="82"/>
         <Button Content="Delete Branch" HorizontalAlignment="Left" Margin="38,241,0,0" VerticalAlignment="Top" Width="100" Click="DeleteBranch_Click"/>
-        <Button Content="Remove Cashier" HorizontalAlignment="Left" Margin="192,241,0,0" VerticalAlignment="Top" Width="100"/>
+        <Button Content="Remove Cashier" HorizontalAlignment="Left" Margin="192,241,0,0" VerticalAlignment="Top" Width="100" Click="RemoveCashierfromBranchList_Click"/>
         <Button Content="Update Details" HorizontalAlignment="Left" Margin="340,241,0,0" VerticalAlignment="Top" Width="100"/>
         <Button Content="Add Branch" HorizontalAlignment="Left" Margin="38,342,0,0" VerticalAlignment="Top" Width="100" Click="AddBranch_Click"/>
         <Button Content="Upadte Branch" HorizontalAlignment="Left" Margin="38,375,0,0" VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.484,2.885"/>

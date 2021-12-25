@@ -140,13 +140,18 @@ namespace Wpf_BankDBManager
         private void BranchesList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //MessageBox.Show(ListAssociatedCashiers.SelectedValue.ToString(););
-            //ListAssociatedCashiers.SelectedValue.ToString();
+           
             ShowAssociatedCahsiers();
+            ShowSelectedBranchInTextBox();
         }
 
         private void ListAssociatedCashiers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ShowCahsierDetails();
+        }
+        private void ListAllCashiers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ShowSelectedCashierInTextBox();
         }
 
         private void DeleteBranch_Click(object sender, RoutedEventArgs e)
@@ -266,5 +271,81 @@ namespace Wpf_BankDBManager
                 ShowAllCashiers();
             }
         }
+
+        private void RemoveCashierfromBranchList_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string query = "delete from WorkPlaceCashierBankBranch where id = @CashierFromBranchId, @CashierID ";
+                SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+                sqlConnection.Open();
+                sqlCommand.Parameters.AddWithValue("@CashierFromBranchId", ListAssociatedCashiers.SelectedValue);
+                sqlCommand.Parameters.AddWithValue("@CashierID", ListAssociatedCashiers.SelectedValue);
+                sqlCommand.ExecuteScalar();
+
+
+            }
+            catch (Exception ed)
+            {
+                MessageBox.Show(ed.ToString());
+            }
+            finally
+            {
+                sqlConnection.Close();
+                ShowAssociatedCahsiers();
+            }
+        }
+
+        private void ShowSelectedBranchInTextBox()
+        {
+            try
+            {
+                string query = "select location from BankBranch where Id = @BankBranchId";
+
+                SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);           
+                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+
+                using (sqlDataAdapter)
+                {
+
+                    sqlCommand.Parameters.AddWithValue("@BankBranchId", BranchesList.SelectedValue);
+
+                    DataTable branchDataTable = new DataTable();
+
+                    sqlDataAdapter.Fill(branchDataTable);
+
+                   textBox.Text = branchDataTable.Rows[0]["Location"].ToString();
+                }
+            }
+            catch (Exception e)
+            {
+                // MessageBox.Show(e.ToString());
+            }
+        }
+
+        private void ShowSelectedCashierInTextBox()
+        {
+            try
+            {
+                string query = "select Name from Cashier where Id = @CashierId";
+                SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);               
+                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+
+                using (sqlDataAdapter)
+                {
+
+                    sqlCommand.Parameters.AddWithValue("@CashierId", ListAllCashiers.SelectedValue);
+                    DataTable cashierDataTable = new DataTable();
+                    sqlDataAdapter.Fill(cashierDataTable);
+                    textBox.Text = cashierDataTable.Rows[0]["Name"].ToString();
+                }
+            }
+            catch (Exception e)
+            {
+                // MessageBox.Show(e.ToString());
+            }
+        }
+
+        
     }
 }
