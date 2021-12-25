@@ -375,6 +375,7 @@ namespace Wpf_BankDBManager
         {
             try
             {
+
                 string query = "update Cashier Set Name = @Name where Id = @CashierId";
                 SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
                 sqlConnection.Open();
